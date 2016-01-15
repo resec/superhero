@@ -157,7 +157,7 @@ class LoginHandler(BaseHandler):
                         "loginip": self.get_ipaddress()
                     }
                 })
-                self.redirect("/")
+                #self.redirect("/")
             else:
                 assert False
         except tornado.web.Finish:
@@ -199,7 +199,7 @@ class RegisterHandler(BaseHandler):
         member = yield self.db.member.find_one({'username': name})
         # 用户名已存在
         if member:
-            self.redirect("/register?error=usernameused")
+            self.write({"错误提示":"用户名已存在"})
         #插入用户
         user = {
             "username": name,
@@ -221,5 +221,5 @@ class RegisterHandler(BaseHandler):
         }
         result = yield self.db.member.insert(user)
         self.flash["user_reg"] = None
-        self.redirect('/login')
+        #self.redirect('/login')
 

@@ -16,3 +16,47 @@ class IndexHandler(BaseHandler):
     def get(self, *args, **kwargs):
         self.render("index.html")
 
+class IndexInfoHandler(BaseHandler):
+
+    @not_need_login
+    def prepare(self):
+        BaseHandler.prepare(self)    
+
+    @tornado.web.asynchronous
+    @gen.coroutine
+    def get(self, *args, **kwargs):
+        self.write(self.index)
+        
+        
+    index = { 'domain': 'jsgen.org',
+  'beian': '',
+  'title': 'jsGen',
+  'url': 'http://www.jsgen.org',
+  'logo': '/static/img/logo.png',
+  'description': 'You can generate a beautiful website or blog with javascript!',
+  'metatitle': 'jsGen',
+  'metadesc': 'You can generate a beautiful website or blog with javascript!',
+  'keywords': 'jsGen,Node.js,MongoDB',
+  'date': 1452827445323,
+  'visitors': 70,
+  'users': 1,
+  'articles': 0,
+  'comments': 0,
+  'onlineNum': 2,
+  'onlineUsers': 2,
+  'maxOnlineNum': 2,
+  'maxOnlineTime': 1452836161181,
+  'ArticleTagsMax': 5,
+  'UserTagsMax': 10,
+  'TitleMinLen': 12,
+  'TitleMaxLen': 90,
+  'SummaryMaxLen': 420,
+  'ContentMinLen': 24,
+  'ContentMaxLen': 20480,
+  'UserNameMinLen': 5,
+  'UserNameMaxLen': 15,
+  'register': True,
+  'upload': False,
+  'cloudDomian': '',
+  'tagsList': [],
+  'user': None }

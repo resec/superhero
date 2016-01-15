@@ -107,12 +107,8 @@ jsGen.config(['$httpProvider', 'app',
         function init() {
             restAPI.index.get({}, function (data) {
                 app.timeOffset = Date.now() - data.timestamp;
-                data = data.data;
                 data.title2 = data.description;
-                data.info.angularjs = angular.version.full.replace(/\-build.*$/, '');
                 app.union(global, data);
-                app.version = global.info.version || '';
-                app.upyun = global.user && global.user.upyun;
                 app.checkUser();
             });
         }
@@ -1489,9 +1485,9 @@ jsGen
             if (app.validate($scope)) {
                 var data = app.union($scope.login);
                 data.logtime = Date.now() - app.timeOffset;
-                data.logpwd = app.CryptoJS.SHA256(data.logpwd).toString();
-                data.logpwd = app.CryptoJS.HmacSHA256(data.logpwd, 'jsGen').toString();
-                data.logpwd = app.CryptoJS.HmacSHA256(data.logpwd, data.logname + ':' + data.logtime).toString();
+                //data.logpwd = app.CryptoJS.SHA256(data.logpwd).toString();
+                //data.logpwd = app.CryptoJS.HmacSHA256(data.logpwd, 'jsGen').toString();
+                //data.logpwd = app.CryptoJS.HmacSHA256(data.logpwd, data.logname + ':' + data.logtime).toString();
 
                 app.restAPI.user.save({
                     ID: 'login'
@@ -1600,10 +1596,11 @@ jsGen
             if (app.validate($scope)) {
                 var data = {
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    passwd: user.passwd
                 };
-                data.passwd = app.CryptoJS.SHA256(user.passwd).toString();
-                data.passwd = app.CryptoJS.HmacSHA256(data.passwd, 'jsGen').toString();
+                //data.passwd = app.CryptoJS.SHA256(user.passwd).toString();
+                //data.passwd = app.CryptoJS.HmacSHA256(data.passwd, 'jsGen').toString();
 
                 app.restAPI.user.save({
                     ID: 'register'
