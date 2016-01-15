@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="jsGen">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <base href="/">
+    <title>测试 标题</title>
+    <meta name="title" content="测试 METATITLE">
+    <meta name="description" content="测试 METADESC">
+    <meta name="keywords" content="测试 KEYWARDS">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="static/favicon.ico?VERSION"/>
+    <link rel="stylesheet" href="static/css/app.css">
+  </head>
+  <body class="pure-g-r ng-cloak" ng-cloak>
+    <div class="pure-u-1 menu">
+      <div class="pure-menu pure-menu-open pure-menu-horizontal wrap">
+        <ul class="pure-menu-logo">
+          <li><a class="pure-menu-img" href="/"><img height="50" src="static/image/logo.png"/></a></li>
+          <li><a href="/">测试</a></li>
+        </ul>
+        <ul ng-if="!global.isPhone">
+          <li><a href="/tag/AngularJS">AngularJS</a></li>
+        </ul>
+        <ul class="right user" ng-if="!global.isLogin">
+          <li><a href="/register"><i class="fa fa-user-md"></i>注册</a></li>
+          <li><a href="/login"><i class="fa fa-signin"></i>登录</a></li>
+        </ul>
+        <ul class="right user" ng-if="global.isLogin">
+          <li><a class="pure-menu-img" href="/home"><img class="img-mini" src="static/image/avatar.png"/></a></li>
+          <li ng-if="global.isDesktop"><a href="/home"><i class="fa fa-home"></i>用户</a></li>
+          <li ng-if="global.isEditor"><a href="/admin"><i class="fa fa-gear"></i>管理</a></li>
+          <li ng-if="global.isDesktop"><a ng-click="logout()"><i class="fa fa-signout"></i>退出</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pure-u-1">
+      <div id="main" ng-view></div>
+    </div>
+    <div class="loading" ng-show="loading.show"></div>
+    <script src="static/js/lib.js"></script>
+    <script src="static/js/app.js"></script>
+  </body>
+</html>
