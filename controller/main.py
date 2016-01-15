@@ -38,10 +38,6 @@ class IndexInfoHandler(BaseHandler):
   'metadesc': 'You can generate a beautiful website or blog with javascript!',
   'keywords': 'jsGen,Node.js,MongoDB',
   'date': 1452827445323,
-  'visitors': 70,
-  'users': 1,
-  'articles': 0,
-  'comments': 0,
   'onlineNum': 2,
   'onlineUsers': 2,
   'maxOnlineNum': 2,
@@ -58,5 +54,5 @@ class IndexInfoHandler(BaseHandler):
   'register': True,
   'upload': False,
   'cloudDomian': '',
-  'tagsList': [],
+  'tagsList': ['为什么','你','这么','叼'],
   'user': None }

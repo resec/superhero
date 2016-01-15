@@ -123,6 +123,52 @@ class ForgetpwdHandler(BaseHandler):
         else:
             self.custom_error("不存在这个Email")
 
+
+auth_return = {
+    "_id": "Uaebeb",
+    "name": "resec",
+    "nickname": "resec",
+    "email": "resec0109@gmail.com",
+    "locked": False,
+    "social": {
+        "weibo": {
+            "id": "",
+            "name": ""
+        },
+        "qq": {
+            "id": "",
+            "name": ""
+        },
+        "google": {
+            "id": "",
+            "name": ""
+        },
+        "baidu": {
+            "id": "",
+            "name": ""
+        }
+    },
+    "sex": "",
+    "role": 2,
+    "avatar": "http://www.gravatar.com/avatar/af51e5dd2644230c8e41ec1b19eb6883",
+    "desc": "",
+    "date": 1452652182691,
+    "score": 2,
+    "readtimestamp": 1452859610927,
+    "lastLoginDate": 1452836931547,
+    "fans": 0,
+    "follow": 0,
+    "followList": [],
+    "tagsList": [],
+    "articles": 0,
+    "collections": 0,
+    "markList": [],
+    "unread": [],
+    "receiveList": [],
+    "sendList": []
+}
+
+
 class LoginHandler(BaseHandler):
     def initialize(self):
         BaseHandler.initialize(self)
@@ -157,7 +203,7 @@ class LoginHandler(BaseHandler):
                         "loginip": self.get_ipaddress()
                     }
                 })
-                #self.redirect("/")
+                self.write(auth_return)
             else:
                 assert False
         except tornado.web.Finish:
@@ -221,5 +267,5 @@ class RegisterHandler(BaseHandler):
         }
         result = yield self.db.member.insert(user)
         self.flash["user_reg"] = None
-        #self.redirect('/login')
+        self.write(auth_return)
 

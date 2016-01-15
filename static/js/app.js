@@ -1403,7 +1403,7 @@ jsGen
                 pagination.path = app.location.path();
                 pagination.pageSize = myConf.pageSize(pagination.pageSize, 'index');
                 $scope.pagination = pagination;
-                $scope.articleList = data.data;
+                $scope.articleList = data;
             });
         }
 
@@ -1426,7 +1426,7 @@ jsGen
         checkRouteParams();
         getArticleList();
         getList('comment').then(function (data) {
-            data = app.union(data.data);
+            data = app.union(data);
             app.each(data, function (x, i) {
                 x.content = app.filter('cutText')(x.content, 180);
             });
@@ -1455,11 +1455,11 @@ jsGen
             pagination.pageSize = myConf.pageSize(pagination.pageSize, 'tag');
             pagination.sizePerPage = [50, 100, 200];
             $scope.pagination = pagination;
-            $scope.tagList = data.data;
+            $scope.tagList = data;
         });
 
         getList('comment').then(function (data) {
-            data = app.union(data.data);
+            data = app.union(data);
             app.each(data, function (x, i) {
                 x.content = app.filter('cutText')(x.content, 180);
             });
@@ -1492,7 +1492,7 @@ jsGen
                 app.restAPI.user.save({
                     ID: 'login'
                 }, data, function (data) {
-                    app.rootScope.global.user = data.data;
+                    app.rootScope.global.user = data;
                     app.checkUser();
                     $scope.$destroy();
                     app.location.path('/home');
@@ -1605,7 +1605,7 @@ jsGen
                 app.restAPI.user.save({
                     ID: 'register'
                 }, data, function (data) {
-                    app.rootScope.global.user = data.data;
+                    app.rootScope.global.user = data;
                     app.checkUser();
                     $scope.$destroy();
                     app.location.path('/home');
@@ -1626,15 +1626,15 @@ jsGen
             switch (path) {
             case 'follow':
             case 'fans':
-                return 'user-list.html';
+                return 'static/template/user-list.html';
             case 'detail':
-                return 'user-edit.html';
+                return 'static/template/user-edit.html';
             case 'article':
             case 'comment':
             case 'mark':
-                return 'user-article.html';
+                return 'static/template/user-article.html';
             default:
-                return 'user-article.html';
+                return 'static/template/user-article.html';
             }
         }
 
@@ -1653,11 +1653,11 @@ jsGen
         function tplName() {
             switch ($routeParams.OP) {
             case 'fans':
-                return 'user-list.html';
+                return 'static/template/user-list.html';
             case 'article':
-                return 'user-article.html';
+                return 'static/template/user-article.html';
             default:
-                return 'user-article.html';
+                return 'static/template/user-article.html';
             }
         }
 
@@ -1669,7 +1669,7 @@ jsGen
         };
 
         getUser('U' + $routeParams.ID).then(function (data) {
-            $scope.user = data.data;
+            $scope.user = data;
             app.rootScope.global.title2 = $scope.user.name + app.locale.USER.title;
         });
     }
@@ -1696,7 +1696,7 @@ jsGen
             pagination.path = app.location.path();
             pagination.pageSize = myConf.pageSize(pagination.pageSize, 'user');
             $scope.pagination = pagination;
-            app.each(data.data, function (x) {
+            app.each(data, function (x) {
                 app.checkFollow(x);
             });
             if (!$routeParams.ID) {
@@ -1704,7 +1704,7 @@ jsGen
             } else {
                 $scope.parent.title = data.user.name + locale.USER[params.OP];
             }
-            $scope.userList = data.data;
+            $scope.userList = data;
         });
     }
 ])
@@ -1731,7 +1731,7 @@ jsGen
                 $scope.pagination = pagination;
                 if (!$routeParams.ID) {
                     var user = global.user || {};
-                    app.each(data.data, function (x) {
+                    app.each(data, function (x) {
                         if (data.readtimestamp > 0) {
                             x.read = x.updateTime < data.readtimestamp;
                             newArticles += !x.read;
@@ -1742,7 +1742,7 @@ jsGen
                 } else {
                     $scope.parent.title = data.user.name + locale.USER[params.OP];
                 }
-                $scope.articleList = data.data;
+                $scope.articleList = data;
             });
         }
 
@@ -1886,7 +1886,7 @@ jsGen
                     }
                     if (!app.isEmpty(data)) {
                         app.restAPI.user.save({}, data, function (data) {
-                            app.union(global.user, data.data);
+                            app.union(global.user, data);
                             initUser();
                             app.toast.success(locale.USER.updated, locale.RESPONSE.success);
                         });
@@ -2079,7 +2079,7 @@ jsGen
                     }, {
                         data: idList
                     }, function (data) {
-                        app.each(data.data, function (x) {
+                        app.each(data, function (x) {
                             checkArticleIs(x);
                             commentCache.put(x._id, x);
                             result[x._id] = x;
@@ -2159,7 +2159,7 @@ jsGen
                     ID: article._id,
                     OP: 'comment'
                 }, data, function (data) {
-                    var comment = data.data,
+                    var comment = data,
                         replyToComment = $scope.comment.replyToComment;
                     article.commentsList.unshift(comment);
                     article.comments += 1;
@@ -2187,7 +2187,7 @@ jsGen
             };
             app.promiseGet(params, restAPI, app.param(params), listCache).then(function (data) {
                 var pagination = data.pagination || {},
-                    commentsList = data.data;
+                    commentsList = data;
                 pagination.pageSize = myConf.pageSize(pagination.pageSize, 'comment');
                 $scope.pagination = pagination;
                 app.each(commentsList, function (x) {
@@ -2204,7 +2204,7 @@ jsGen
             ID: ID
         }, restAPI, ID, app.cache.article).then(function (data) {
             var pagination = data.pagination || {},
-                article = data.data;
+                article = data;
             pagination.pageSize = myConf.pageSize(pagination.pageSize, 'comments');
             checkArticleIs(article);
             app.each(article.commentsList, function (x) {
@@ -2223,11 +2223,11 @@ jsGen
                     author = $scope.article.author;
                 app.checkFollow(user);
                 app.union(author, user);
-                author.articlesList = data.data;
+                author.articlesList = data;
             });
         });
         getList('hots').then(function (data) {
-            $scope.hotArticles = data.data.slice(0, 10);
+            $scope.hotArticles = data.slice(0, 10);
         });
     }
 ])
@@ -2367,11 +2367,11 @@ jsGen
                         ID: ID || 'index',
                         OP: ID && 'edit'
                     }, data, function (data) {
-                        var article = data.data;
+                        var article = data;
 
                         if (oldArticle) {
                             delete article.commentsList;
-                            article = data.data = app.union(oldArticle.data, article);
+                            article = data = app.union(oldArticle.data, article);
                         }
                         articleCache.put(article._id, data);
                         initArticle(article);
@@ -2400,7 +2400,7 @@ jsGen
             app.promiseGet({
                 ID: ID
             }, restAPI, ID, articleCache).then(function (data) {
-                initArticle(data.data);
+                initArticle(data);
             });
         } else {
             initArticle();
@@ -2489,7 +2489,7 @@ jsGen
                         data: data
                     }, function (data) {
                         var updated = [];
-                        app.each(data.data, function (x) {
+                        app.each(data, function (x) {
                             app.findItem($scope.userList, function (y) {
                                 if (x._id === y._id) {
                                     app.union(y, x);
@@ -2513,7 +2513,7 @@ jsGen
             pagination.pageSize = myConf.pageSize(pagination.pageSize, 'userAdmin');
             pagination.sizePerPage = [20, 100, 200];
             $scope.pagination = pagination;
-            initUserList(data.data);
+            initUserList(data);
         });
     }
 ])
@@ -2640,7 +2640,7 @@ jsGen
             pagination.pageSize = myConf.pageSize(pagination.pageSize, 'tagAdmin');
             pagination.sizePerPage = [20, 50, 100];
             $scope.pagination = pagination;
-            initTagList(data.data);
+            initTagList(data);
         });
     }
 ])
@@ -2684,7 +2684,7 @@ jsGen
                     restAPI.save({
                         OP: 'admin'
                     }, data, function (data) {
-                        initglobal(data.data);
+                        initglobal(data);
                         var updated = app.union(originData);
                         delete updated.smtp;
                         delete updated.email;
@@ -2702,7 +2702,7 @@ jsGen
             OP: 'admin'
         }, restAPI).then(function (data) {
             globalTpl = data.configTpl;
-            initglobal(data.data);
+            initglobal(data);
         });
     }
 ]);
