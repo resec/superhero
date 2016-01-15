@@ -95,14 +95,14 @@ application = tornado.web.Application([
     # (r"^/manage/([a-z]+)(/(.*))?", "controller.dashboard.AdminHandler"),
     # (r"^/download/(.*)", "controller.download.DownloadHandler", {"path": "./download/"})
     (r"/", controller.main.IndexHandler), #(GET) 获取网站全局配置文件、包括站点信息、部分站点参数
-    (r"/index", controller.main.IndexHandler), #(GET) 获取网站全局配置文件、包括站点信息、部分站点参数
+    (r"/index", controller.main.IndexInfoHandler), #(GET) 获取网站全局配置文件、包括站点信息、部分站点参数
     (r"/admin", controller.admin.AdminHandler), #(GET POST) 设置网站全局参数
     (r"/user", controller.user.UserHandler), #(GET POST) 获取已登录用户信息，包括用户个人信息和用户关注而未读的文章列表
     (r"/user/index", controller.user.UserHandler),  #(GET POST)
-    (r"/login", controller.auth.LoginHandler), #(POST) 登录
-    (r"/logout", DummyHandler), #(GET) 退出登录
-    (r"/register", controller.auth.RegisterHandler), #(POST) 用户注册
-    (r"/reset", controller.auth.ForgetpwdHandler), #(GET POST) 用户邮箱验证、申请解锁、重置密码、修改邮箱等涉及邮箱验证的操作
+    (r"/user/login", controller.auth.LoginHandler), #(POST) 登录
+    (r"/user/logout", DummyHandler), #(GET) 退出登录
+    (r"/user/register", controller.auth.RegisterHandler), #(POST) 用户注册
+    (r"/user/reset", controller.auth.ForgetpwdHandler), #(GET POST) 用户邮箱验证、申请解锁、重置密码、修改邮箱等涉及邮箱验证的操作
     (r"/user/admin", controller.admin.AdminHandler), #(GET POST) 用户管理相关后台接口
     (r"/user/article", controller.user.UserHandler), #(GET) 获取已登录用户（自己）的文章列表
     (r"/user/comment", controller.user.UserHandler), #(GET) 获取已登录用户（自己）的评论列表
