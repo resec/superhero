@@ -61,8 +61,8 @@ Post: Object {
 Tag: Object {
     _id: <TagObjectID>,
     name: String,
-    user_count: Integer,
-    post_count: Integer,
+    user_count: Integer,//default 0
+    post_count: Integer,//default 0
     [user_list: <UserObjectID>[]],
     [post_list: <PostObjectID>[]]
 }
@@ -73,7 +73,7 @@ Mark: Object {
     _id: <MarkObjectID>,
     user: <UserObjectID>,
     post: <PostObjectID>,
-    type: Integer,
+    type: Integer, //0:voteup(like) 1:votedown(unlike) 2:mark
     mark_time: Timestamp,
 }
 ```
@@ -81,7 +81,7 @@ Mark: Object {
 ```
 Relation: Object {
     _id: <RelationObjectID>,
-    type: Integer,
+    type: Integer, //0: follow, 1: fans
     source: <UserObjectID>,
     target: <UserObjectID>
 }
