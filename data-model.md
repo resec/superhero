@@ -45,7 +45,7 @@ User {
 ```
 Post: Object {
     _id: <PostObjectID>,
-    author: User,
+    author: <UserObjectID>,
     type: Integer,
     create_time: Timestamp,
     title: String,
@@ -86,6 +86,6 @@ Relation: Object {
     _id: <RelationObjectID>,
     type: Integer,
     source: <UserObjectID>,
-    target: <PostObjectID>
+    target: <UserObjectID>
 }
 ```
