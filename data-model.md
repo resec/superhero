@@ -55,7 +55,6 @@ User.role: Integer {
     1 = user
 }
 ```
-
 ## Post
 ##### Object
 ```
@@ -89,6 +88,19 @@ Post.type: Integer {
     0 = artical
     1 = comment
 }
+```
+## PostHistory
+##### Object
+```
+PostHistory {
+
+}
+```
+##### Default
+```
+```
+##### Enum
+```
 ```
 ## Tag
 ##### Object
