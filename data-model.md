@@ -1,7 +1,4 @@
-# Mongo Document
-**Table of Contents**
-
-[TOC]
+# Mongo Data Model
 
 ## User
 ```
@@ -16,12 +13,12 @@ User {
     }...],
     locked: Boolean,
     social: {
-        github: {...},
-        wechat: {...},
-        google: {...},
-        email: String,
-        website: String,
-        phone: String,
+        [github: {...}],
+        [wechat: {...}],
+        [google: {...}],
+        [email: String],
+        [website: String],
+        [phone: String],
         ...
     },
     score: {
