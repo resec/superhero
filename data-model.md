@@ -1,19 +1,33 @@
-User
-Post
-Tag
-Mark
-Relation
+# Mongo Document
+**Table of Contents**
 
-#User
-User: Object {
-    _id: ObjectID,
+[TOC]
+
+## User
+```
+User {
+    _id: <UserObjectID>,
     username: String,
     nickname: String,
     password: String,
-    role: Role[],
-    locked: boolean,
-    social: Social,
-    score: Score,
+    role: [{
+        type: Integer,
+        ...    
+    }...],
+    locked: Boolean,
+    social: {
+        github: {...},
+        wechat: {...},
+        google: {...},
+        email: String,
+        website: String,
+        phone: String,
+        ...
+    },
+    score: {
+        rank: Integer
+        ...
+    },
     gender: String,
     avatar: String,
     register_time: Timestamp,
@@ -22,55 +36,21 @@ User: Object {
     follow_count: Integer,
     post_count: Integer,
     tag_count: Integer,
-    tag_list: Tag[],
+    tag_list: <TagObjectID>[],
     last_login_time: Timestamp,
     last_login_ip: String
 }
-
-Role: Object {
-    type: Integer,
-    ...    
-}
-
-Social: Object {
-    github: Object {},
-    wechat: Object {},
-    google: Object {},
-    email: String,
-    website: String,
-    phone: String
-}        
-        
-Score: Object {
-    rank: Integer    
-}
-        
-User_Min: Object {
-    username: String,
-    nickname: String,
-    score: Score,
-    avatar: String
-}
-
-#Tag
-Tag: Object {
-    _id: ObjectID,
-    name: String,
-    user_count: Integer,
-    post_count: Integer,
-    user_list: User[],
-    post_list: Post[]
-}
-
-#Post
+```
+## Post
+```
 Post: Object {
-    _id: ObjectID,
+    _id: <PostObjectID>,
     author: User,
     type: Integer,
     create_time: Timestamp,
     title: String,
     content: String,
-    tag_list: Tag[],
+    tag_list: <TagObjectID>[],
     up_count: Integer,
     down_count: Integer,
     mark_count: Integer,
@@ -78,18 +58,34 @@ Post: Object {
     commentable: Boolean,
     parent: Post
 }
-
-#Mark
+```
+## Tag
+```
+Tag: Object {
+    _id: <TagObjectID>,
+    name: String,
+    user_count: Integer,
+    post_count: Integer,
+    user_list: <UserObjectID>[],
+    post_list: <PostObjectID>[]
+}
+```
+## Mark
+```
 Mark: Object {
-    user: User,
-    post: Post,
+    _id: <MarkObjectID>,
+    user: <UserObjectID>,
+    post: <PostObjectID>,
     type: Integer,
     mark_time: Timestamp,
 }
-
-#Relation
+```
+## Relation
+```
 Relation: Object {
+    _id: <RelationObjectID>,
     type: Integer,
-    source: User,
-    target: User
+    source: <UserObjectID>,
+    target: <PostObjectID>
 }
+```
