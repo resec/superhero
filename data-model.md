@@ -71,6 +71,7 @@ Post: Object {
     mark_count: Integer,
     visit_count: Integer,
     commentable: Boolean,
+    initial: Boolean,
     [parent: Post]
 }
 ```
@@ -93,7 +94,10 @@ Post.type: Integer {
 ##### Object
 ```
 PostHistory {
-
+    _id: <PostHistoryObjectID>,
+    from: <PostObjectID>,
+    to: <PostObjectID>,
+    initial: <PostObjectID>
 }
 ```
 ##### Default
