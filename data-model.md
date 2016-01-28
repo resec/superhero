@@ -1,6 +1,7 @@
 # Mongo Data Model
 
 ## User
+##### Object
 ```
 User {
     _id: <UserObjectID>,
@@ -38,6 +39,23 @@ User {
     last_login_ip: String
 }
 ```
+##### Default
+```
+User.locked: Boolean = false
+User.score.rank: Integer = 0
+User.fans_count: Integer = 0
+User.follow_count: Integer = 0
+User.post_count: Integer = 0
+User.tag_count: Integer = 0
+```
+##### Enum
+```
+User.role = {
+    0 : admin,
+    1 : user
+}
+```
+
 ## Post
 ```
 Post: Object {
