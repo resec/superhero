@@ -57,6 +57,7 @@ User.role = {
 ```
 
 ## Post
+##### Object
 ```
 Post: Object {
     _id: <PostObjectID>,
@@ -74,7 +75,10 @@ Post: Object {
     [parent: Post]
 }
 ```
+##### Default
+##### Enum
 ## Tag
+##### Object
 ```
 Tag: Object {
     _id: <TagObjectID>,
@@ -85,7 +89,10 @@ Tag: Object {
     [post_list: <PostObjectID>[]]
 }
 ```
+##### Default
+##### Enum
 ## Mark
+##### Object
 ```
 Mark: Object {
     _id: <MarkObjectID>,
@@ -95,7 +102,10 @@ Mark: Object {
     mark_time: Timestamp,
 }
 ```
+##### Default
+##### Enum
 ## Relation
+##### Object
 ```
 Relation: Object {
     _id: <RelationObjectID>,
@@ -104,3 +114,5 @@ Relation: Object {
     target: <UserObjectID>
 }
 ```
+##### Default
+##### Enum
