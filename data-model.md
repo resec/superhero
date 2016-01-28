@@ -12,7 +12,7 @@ User {
         ...    
     }...],
     locked: Boolean,
-    social: {
+    [social: {
         [github: {...}],
         [wechat: {...}],
         [google: {...}],
@@ -20,20 +20,20 @@ User {
         [website: String],
         [phone: String],
         ...
-    },
+    }],
     score: {
         rank: Integer
         ...
     },
-    gender: String,
-    avatar: String,
+    [gender: String],
+    [avatar: String],
     register_time: Timestamp,
-    description: String,
+    [description: String],
     fans_count: Integer,
     follow_count: Integer,
     post_count: Integer,
     tag_count: Integer,
-    tag_list: <TagObjectID>[],
+    [tag_list: <TagObjectID>[]],
     last_login_time: Timestamp,
     last_login_ip: String
 }
@@ -53,7 +53,7 @@ Post: Object {
     mark_count: Integer,
     visit_count: Integer,
     commentable: Boolean,
-    parent: Post
+    [parent: Post]
 }
 ```
 ## Tag
@@ -63,8 +63,8 @@ Tag: Object {
     name: String,
     user_count: Integer,
     post_count: Integer,
-    user_list: <UserObjectID>[],
-    post_list: <PostObjectID>[]
+    [user_list: <UserObjectID>[]],
+    [post_list: <PostObjectID>[]]
 }
 ```
 ## Mark
