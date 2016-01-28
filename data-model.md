@@ -50,9 +50,9 @@ User.tag_count: Integer = 0
 ```
 ##### Enum
 ```
-User.role = {
-    0 : admin,
-    1 : user
+User.role: Integer {
+    0 = admin,
+    1 = user
 }
 ```
 
@@ -76,7 +76,20 @@ Post: Object {
 }
 ```
 ##### Default
+```
+Post.up_count: Integer = 0
+Post.down_count: Integer = 0
+Post.mark_count: Integer = 0
+Post.visit_count: Integer = 1
+Post.commentable: Boolean = true
+```
 ##### Enum
+```
+Post.type: Integer {
+    0 = artical
+    1 = comment
+}
+```
 ## Tag
 ##### Object
 ```
