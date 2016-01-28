@@ -2,6 +2,9 @@
 
 def class BaseDao(object):
     
+    def __init__(self, db):
+        self.db = db
+    
     def query_one(self, id, field_list=None):
         raise NotImplementedError
         
