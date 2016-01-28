@@ -63,6 +63,7 @@ Post: Object {
     author: <UserObjectID>,
     type: Integer,
     create_time: Timestamp,
+    modify_time: Timestamp,
     title: String,
     content: String,
     tag_list: <TagObjectID>[],
@@ -71,7 +72,16 @@ Post: Object {
     mark_count: Integer,
     visit_count: Integer,
     commentable: Boolean,
-    initial: Boolean,
+    locked: Boolean,
+    [history_list: PostHistory[
+        PostHistory: Object {
+            insert_time: Timestamp,
+            title: String,
+            content: String,
+            tag_list: <TagObjectID>[]
+        }
+        ...
+    ]]
     [parent: Post]
 }
 ```
@@ -82,6 +92,7 @@ Post.down_count: Integer = 0
 Post.mark_count: Integer = 0
 Post.visit_count: Integer = 1
 Post.commentable: Boolean = true
+Post.locked: Boolean = false
 ```
 ##### Enum
 ```
@@ -90,21 +101,19 @@ Post.type: Integer {
     1 = comment
 }
 ```
-## PostHistory
-##### Object
+##### CURD Remark
+###### Insert
 ```
-PostHistory {
-    _id: <PostHistoryObjectID>,
-    from: <PostObjectID>,
-    to: <PostObjectID>,
-    initial: <PostObjectID>
-}
+Insert Post.tag_list to Tag for any new tag
+Update Tag.post_count += 1 for any existed tag in Post.tag_list
+Update User.post_count += 1 where Uset._id = Post.author
 ```
-##### Default
+###### Update
 ```
-```
-##### Enum
-```
+Query previous post from Post with Post._id
+Turncate queried post to PostHistory
+Insert PostHistory to Post with Post._id
+Update Post with Post._id
 ```
 ## Tag
 ##### Object
@@ -123,9 +132,6 @@ Tag: Object {
 Tag.user_count: Integer = 0
 Tag.post_count: Integer = 1
 ```
-##### Enum
-```
-```
 ##### CURD Remark
 ###### Delete
 ```
@@ -142,9 +148,6 @@ Mark: Object {
     type: Integer, 
     mark_time: Timestamp,
 }
-```
-##### Default
-```
 ```
 ##### Enum
 ```
@@ -178,9 +181,6 @@ Relation: Object {
     source: <UserObjectID>,
     target: <UserObjectID>
 }
-```
-##### Default
-```
 ```
 ##### Enum
 ```
