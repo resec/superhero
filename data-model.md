@@ -103,7 +103,13 @@ Tag: Object {
 }
 ```
 ##### Default
+```
+Tag.user_count: Integer = 0
+Tag.post_count: Integer = 1
+```
 ##### Enum
+```
+```
 ## Mark
 ##### Object
 ```
@@ -116,7 +122,16 @@ Mark: Object {
 }
 ```
 ##### Default
+```
+```
 ##### Enum
+```
+Mark.type: Integer {
+    0 = mark,
+    1 = up,
+    2 = down
+}
+```
 ## Relation
 ##### Object
 ```
@@ -128,4 +143,11 @@ Relation: Object {
 }
 ```
 ##### Default
+```
+```
 ##### Enum
+```
+Relation.type: Integer {
+    0 = follow
+}
+```
