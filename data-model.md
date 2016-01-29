@@ -123,6 +123,7 @@ Tag: Object {
     name: String,
     user_count: Integer,
     post_count: Integer,
+    locked: Boolean,
     [user_list: <UserObjectID>[]],
     [post_list: <PostObjectID>[]]
 }
@@ -131,6 +132,7 @@ Tag: Object {
 ```
 Tag.user_count: Integer = 0
 Tag.post_count: Integer = 1
+Tag.locked: Boolean = false
 ```
 ##### CURD Remark
 ###### Delete
